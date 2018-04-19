@@ -1,0 +1,59 @@
+version: "2.1"
+networks:
+  default:
+    external:
+      name: gepard-projects
+
+services:
+  nginx:
+    extends:
+      file: ${COMPOSE_CONVERT_WINDOWS_PATHS}
+      service: nginx
+#    ports:
+#      - 80:80
+    depends_on:
+      - php
+    volumes:
+      - ../task3:/var/www/data
+      - ./nginx.conf:/etc/nginx/conf.d/default.conf
+    environment:
+      - "VIRTUAL_HOST=${VIRTUAL_HOSTS}"
+
+  php:
+    extends:
+      file: ${COMPOSE_CONVERT_WINDOWS_PATHS}
+      service: php72
+    volumes:
+          - ../task3:/var/www/data
+          - ~/.ssh/id_rsa.pub:/home/dev/.ssh/authorized_keys
+          - ~/.ssh/id_rsa.pub:/home/dev/.ssh/id_rsa.pub
+          - ~/.ssh/id_rsa:/home/dev/.ssh/id_rsa
+
+    dns: 8.8.8.8
+    environment:
+      XDEBUG_CONFIG: "remote_host=172.17.0.1 idekey=PHPSTORM"
+      # uncomment next line to allow CLI debugging in PhpStorm
+      PHP_IDE_CONFIG: "serverName=docker"
+
+    networks:
+      default:
+       ipv4_address: 172.100.0.160
+
+  mongodb:
+    extends:
+      file: ${COMPOSE_CONVERT_WINDOWS_PATHS}
+      service: mongodb36
+
+  redis:
+    extends:
+      file: ${COMPOSE_CONVERT_WINDOWS_PATHS}
+      service: redis40
+    networks:
+      default:
+       ipv4_address: 172.100.0.103
+
+#  elastic:
+#     image: elasticsearch:5.6
+#     ports:
+#       - 9200:9200
+
