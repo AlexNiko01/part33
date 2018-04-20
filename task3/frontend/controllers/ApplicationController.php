@@ -2,7 +2,6 @@
 
 namespace frontend\controllers;
 
-use frontend\models\Product;
 use Yii;
 use yii\base\InvalidParamException;
 use yii\base\Model;
@@ -27,17 +26,12 @@ class ApplicationController extends Controller
      *
      * @return mixed
      */
+
     public function actionIndex()
     {
         return $this->render('index');
 
     }
 
-    public function actionSave()
-    {
-        $product = new Product();
-        $product->save();
-        $redis = new \Redis();
-        \var_dump($product->getId());
-    }
+
 }

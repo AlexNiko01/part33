@@ -42,15 +42,11 @@ class Product extends ActiveRecord
     public function save($runValidation = true, $attributeNames = null)
     {
         $this->trigger(self::EVENT_BEFORE_SAVE);
-        try {
-            if ($this->getIsNewRecord()) {
-                return $this->insert($runValidation, $attributeNames);
-            }
 
-            return $this->update($runValidation, $attributeNames) !== false;
-        } catch (\Exception $e) {
-            echo 'Exception: ', $e->getMessage(), "\n";
+        if ($this->getIsNewRecord()) {
+            return $this->insert($runValidation, $attributeNames);
         }
+        return $this->update($runValidation, $attributeNames) !== false;
 
 
     }
@@ -59,11 +55,21 @@ class Product extends ActiveRecord
     {
         return ['id', 'name'];
     }
-//    public function delete(){
-//
-//    }
 
-//    public function getAll(){
+
+    public function rules()
+    {
+        return [
+            [['name'], 'required', 'message' => 'cat field can`t be empty'],
+
+        ];
+    }
+
+    public function getAll()
+    {
+
+    }
+    //    public function delete(){
 //
 //    }
 
