@@ -15,6 +15,7 @@ use frontend\models\PasswordResetRequestForm;
 use frontend\models\ResetPasswordForm;
 use frontend\models\SignupForm;
 use frontend\models\ContactForm;
+use frontend\behaviors\UuidGeneratorBehavior;
 
 /**
  * Site controller
@@ -36,5 +37,7 @@ class ApplicationController extends Controller
     {
         $product = new Product();
         $product->save();
+        $redis = new \Redis();
+        \var_dump($product->getId());
     }
 }

@@ -6,11 +6,13 @@
 namespace frontend\behaviors;
 
 use \frontend\models\Product;
-use yii\behaviors\AttributeBehavior;
+use yii\base\Behavior;
+use Ramsey\Uuid\Uuid;
+use Ramsey\Uuid\Exception\UnsatisfiedDependencyException;
 
-class UuidGeneratorBehavior extends AttributeBehavior
+class UuidGeneratorBehavior extends Behavior
 {
-    public $uuid;
+    protected $uuid;
 
     public function events()
     {
@@ -19,15 +21,18 @@ class UuidGeneratorBehavior extends AttributeBehavior
         ];
     }
 
-    public function generateUuid()
+    public function generateUuid($event)
     {
-        $this->uuid = 'someId';
-        echo 'beforeSave';
-    }
+        try {
+            $uuid = Uuid::uuid4();
+            if ($event->sender->id === null) {
+                $event->sender->setId($uuid->toString());
+            }
 
-    public function getUuid()
-    {
-        return $this->uuid;
-    }
+        } catch (UnsatisfiedDependencyException $e) {
 
+            echo 'Caught exception: ' . $e->getMessage() . "\n";
+
+        }
+    }
 }
