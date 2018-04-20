@@ -11,45 +11,46 @@ use yii\redis\ActiveRecord;
 
 class Product extends ActiveRecord
 {
-    const EVENT_BEFORE_SAVE = 'beforeSave';
-    protected $id;
-    protected $name;
+//    const EVENT_BEFORE_SAVE = 'beforeSave';
 
-    public function behaviors()
-    {
-        return [
-            [
-                'class' => UuidGeneratorBehavior::class,
-            ],
-        ];
-    }
+    public $id;
+    public $name;
 
-    public function setName($name)
-    {
-        $this->name = $name;
-    }
-
-    public function setId($uuid)
-    {
-        $this->id = $uuid;
-    }
-
-    public function getId()
-    {
-        return $this->id;
-    }
-
-    public function save($runValidation = true, $attributeNames = null)
-    {
-        $this->trigger(self::EVENT_BEFORE_SAVE);
-
-        if ($this->getIsNewRecord()) {
-            return $this->insert($runValidation, $attributeNames);
-        }
-        return $this->update($runValidation, $attributeNames) !== false;
-
-
-    }
+//    public function behaviors()
+//    {
+//        return [
+//            [
+//                'class' => UuidGeneratorBehavior::class,
+//            ],
+//        ];
+//    }
+//
+//    public function setName($name)
+//    {
+//        $this->name = $name;
+//    }
+//
+//    public function setId($uuid)
+//    {
+//        $this->id = $uuid;
+//    }
+//
+//    public function getId()
+//    {
+//        return $this->id;
+//    }
+//
+//    public function save($runValidation = true, $attributeNames = null)
+//    {
+//        $this->trigger(self::EVENT_BEFORE_SAVE);
+//
+//        if ($this->getIsNewRecord()) {
+//            return $this->insert($runValidation, $attributeNames);
+//        }
+//        return $this->update($runValidation, $attributeNames) !== false;
+//
+//
+//    }
 
     public function attributes()
     {
@@ -64,11 +65,11 @@ class Product extends ActiveRecord
 
         ];
     }
-
-    public function getAll()
-    {
-
-    }
+//
+//    public function getAll()
+//    {
+//
+//    }
     //    public function delete(){
 //
 //    }

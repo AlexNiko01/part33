@@ -9,18 +9,14 @@ use yii\helpers\Html;
 
 ?>
 
-<?php $form = ActiveForm::begin(); ?>
-<?= $form->field($product, 'name')->textInput() ?>
-<?=
-GridView::widget([
-    'dataProvider' => '',
-    'columns' => [
-        'id',
-        'name'
-    ],
+<?php //$form = ActiveForm::begin(); ?>
+<? //= $form->field($product, 'name')->textInput() ?>
+<?php
+echo GridView::widget([
+    'dataProvider' => $dataProvider,
 ]);
 ?>
-<div class="form-group">
-    <?= Html::submitButton('Save', ['class' => 'btn-success']) ?>
-</div>
-<?php ActiveForm::end(); ?>
+<!--<div class="form-group">-->
+<!--    --><? //= Html::submitButton('Save', ['class' => 'btn-success']) ?>
+<!--</div>-->
+<?php //ActiveForm::end(); ?>

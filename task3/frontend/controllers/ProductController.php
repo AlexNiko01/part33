@@ -3,6 +3,8 @@
 namespace frontend\controllers;
 
 use frontend\models\Product;
+use yii\data\ActiveDataProvider;
+
 class ProductController extends ApplicationController
 {
     public function actionSave()
@@ -15,8 +17,25 @@ class ProductController extends ApplicationController
 
     public function actionView()
     {
+//        $product = new Product();
+//        $products = $product->getAll();
+
+
         $product = new Product();
-        $products = $product->getAll();
-        return $this->render('view', ['product' => $product]);
+        $product->id = 123;
+        $product->name = 'name';
+        $product->insert();
+
+
+        \var_dump(Product::find()->all());
+
+//        $dataProvider = new ActiveDataProvider([
+//            'query' => Product::find(),
+//            'pagination' => [
+//                'pageSize' => 20,
+//            ],
+//        ]);
+
+//        return $this->render('view', ['dataProvider' => $dataProvider]);
     }
 }
