@@ -54,14 +54,12 @@ class ProductController extends ApplicationController
         $request = Yii::$app->request;
         $product = Product::findOne($request->get('id', 1));
 
-        if ($product->load(Yii::$app->request->post())) {
+        if ($request->post('Product')['name']) {
             if ($product->validate()) {
-                $productData = Yii::$app->request->post('Product');
-                $product->name = $productData['name'];
+                $product->name = $request->post('Product')['name'];
 
                 $product->save();
-                Yii::$app->session->setFlash('success', 'The data is received');
-
+                $this->redirect(['product/index']);
             } else {
                 Yii::$app->session->setFlash('error', 'Something is went wrong. this is ERROR');
             }

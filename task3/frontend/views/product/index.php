@@ -20,7 +20,7 @@ echo GridView::widget([
     'columns' => [
         'id',
         'name',
-        ['class' => 'yii\grid\ActionColumn', 'template' => '{view}{update}{delete}{link}',],
+        ['class' => 'yii\grid\ActionColumn', 'template' => '{view}{update}{delete}{link}'],
         ['class' => 'yii\grid\SerialColumn']
     ],
 ]);
