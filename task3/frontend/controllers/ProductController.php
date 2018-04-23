@@ -18,16 +18,14 @@ class ProductController extends ApplicationController
     {
         $product = new Product();
         if ($product->load(Yii::$app->request->post())) {
-            if ($product->validate()) {
-                $productData = Yii::$app->request->post('Product');
-                $product->name = $productData['name'];
 
-                $product->save();
-                Yii::$app->session->setFlash('success', 'The data is received');
-                return $this->refresh();
-            } else {
-                Yii::$app->session->setFlash('error', 'Something is went wrong. this is ERROR');
-            }
+            $productData = Yii::$app->request->post('Product');
+            $product->name = $productData['name'];
+
+            $product->save();
+            Yii::$app->session->setFlash('success', 'The data is received');
+            return $this->refresh();
+
         }
 
         $dataProvider = new ActiveDataProvider([
@@ -52,17 +50,15 @@ class ProductController extends ApplicationController
     public function actionUpdate()
     {
         $request = Yii::$app->request;
+        $id = $request->get('id', 1);
         $product = Product::findOne($request->get('id', 1));
 
         if ($request->post('Product')['name']) {
-            if ($product->validate()) {
-                $product->name = $request->post('Product')['name'];
+            $product->name = $request->post('Product')['name'];
 
-                $product->save();
-                $this->redirect(['product/index']);
-            } else {
-                Yii::$app->session->setFlash('error', 'Something is went wrong. this is ERROR');
-            }
+            $product->save();
+            $this->redirect(['product/index']);
+
         }
 
         return $this->render('update', ['product' => $product]);
