@@ -50,7 +50,6 @@ class ProductController extends ApplicationController
     public function actionUpdate()
     {
         $request = Yii::$app->request;
-        $id = $request->get('id', 1);
         $product = Product::findOne($request->get('id', 1));
 
         if ($request->post('Product')['name']) {
