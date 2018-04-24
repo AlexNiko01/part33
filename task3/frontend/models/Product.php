@@ -1,7 +1,5 @@
 <?php
-/**
- *
- */
+
 
 namespace frontend\models;
 
@@ -13,34 +11,48 @@ class Product extends ActiveRecord
 {
     const EVENT_BEFORE_SAVE = 'beforeSave';
 
-    public function behaviors()
+    /**
+     * @return array
+     */
+    public function behaviors(): array
     {
         return [
-            [
-                'class' => UuidGeneratorBehavior::class,
-            ],
+            UuidGeneratorBehavior::class,
         ];
     }
 
-    public function setId($uuid)
+    /**
+     * @param $uuid string
+     */
+    public function setId(string $uuid): void
     {
         $this->id = $uuid;
     }
 
+    /**
+     * @param bool $runValidation
+     * @param null $attributeNames
+     * @return bool
+     */
     public function save($runValidation = true, $attributeNames = null)
     {
         $this->trigger(self::EVENT_BEFORE_SAVE);
-        parent::save($runValidation, $attributeNames);
 
+        return parent::save($runValidation, $attributeNames);
     }
 
-    public function attributes()
+    /**
+     * @return array
+     */
+    public function attributes(): array
     {
         return ['id', 'name'];
     }
 
-
-    public function rules()
+    /**
+     * @return array
+     */
+    public function rules(): array
     {
         return [
             [['name'], 'required', 'message' => 'field Name can`t be empty'],

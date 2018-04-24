@@ -8,56 +8,64 @@ use Yii;
 
 class ProductController extends ApplicationController
 {
-    public function actionSave()
+    /**
+     * @param Product $product
+     */
+    private function dataSave(Product $product): void
     {
-        $product = new Product();
-        $product->save();
+        if (false === $product->save()) {
+            Yii::$app->session->setFlash('error', 'Error save!');
+        } else {
+            Yii::$app->session->setFlash('success', 'The data is received');
+        }
     }
 
+    /**
+     * @return mixed|string|\yii\web\Response
+     */
     public function actionIndex()
     {
         $product = new Product();
-        if ($product->load(Yii::$app->request->post())) {
+        if ($product->load(Yii::$app->request->post()) && $product->validate()) {
 
-            $productData = Yii::$app->request->post('Product');
-            $product->name = $productData['name'];
+            $this->dataSave($product);
 
-            $product->save();
-            Yii::$app->session->setFlash('success', 'The data is received');
             return $this->refresh();
-
         }
 
         $dataProvider = new ActiveDataProvider([
             'query' => Product::find(),
             'pagination' => [
-                'pageSize' => 20,
+                'pageSize' => 5,
             ],
         ]);
 
         return $this->render('index', ['dataProvider' => $dataProvider, 'product' => $product]);
     }
 
-    public function actionDelete()
+    /**
+     * @param $id integer
+     */
+    public function actionDelete(int $id): void
     {
-        $request = Yii::$app->request;
         $product = new Product();
-        $product->deleteAll(['id' => $request->get('id', 1)]);
+        $product->deleteAll(['id' => $id]);
         $this->redirect(['product/index']);
 
     }
 
-    public function actionUpdate()
+    /**
+     * @return string
+     */
+    public function actionUpdate(): string
     {
         $request = Yii::$app->request;
         $product = Product::findOne($request->get('id', 1));
 
-        if ($request->post('Product')['name']) {
-            $product->name = $request->post('Product')['name'];
+        if ($product->load(Yii::$app->request->post()) && $product->validate()) {
+            $this->dataSave($product);
 
-            $product->save();
             $this->redirect(['product/index']);
-
         }
 
         return $this->render('update', ['product' => $product]);
