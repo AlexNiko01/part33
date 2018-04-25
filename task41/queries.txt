@@ -1,5 +1,5 @@
 1.a:
-db.products.find({$and:[{"categoryId" : NumberInt(151)}, {"categoryName.name" : "notebooks"}]})
+db.products.find({$and: [{"categoryId" : NumberInt(151)}, {"categoryName.name" : "notebooks"}] })
 
 1.b:
 db.products.find({ean:{ $exists: true, $not: {$size: 0}}})
@@ -8,7 +8,29 @@ db.products.find({ean:{ $exists: true, $not: {$size: 0}}})
 db.products.find({"categoryName.name":{ $ne: "notebooks"}})
 
 1.d:
-db.products.find({ean:{$in : ["0882780045675", "0882780045132","0882780260214"]}})
+db.products.find({ean:{$in : ["0882780045675", "0882780045132","0882780260214"] }})
 
 1.e:
 db.products.find({releaseDate : { $gt: "2018-01-01" }})
+
+1.f:
+db.products.find( {$and: [{updated :{ $gt: "20180201000000" }}, {updated :{$lte: "20180401000000"}}] })
+
+1.g:
+db.products.find({$and: [{"categoryId" : NumberInt(153)}, {"categoryName.name" : "PCs/workstations"}, {releaseDate : { $gt: "2017-01-01" }}, {ean:{ $exists: true, $not: {$size: 0}}}] })
+
+
+
+
+
+2.a:
+db.products.find({$and:[  {"categoryName.langId" :  { $exists: false}}, {"categoryName.name" :  { $exists: false}}  ]})
+
+2.b: ????????????????????????????????????????????
+db.products.find({"gallery.pictures.high.size" : {$gt: NumberInt(10000)}})
+
+2.c:
+{ "features.defaultValue": /^(Intel Core i7-7)\w{3}/, "features.featureId": NumberInt(2196) }
+
+2.e: ????????????????????????????????????????????
+{ $and: [ { "features.defaultValue": "^(Intel Core i7-7)\\w{3}" }, { "features.featureId": NumberInt(944) } ] }

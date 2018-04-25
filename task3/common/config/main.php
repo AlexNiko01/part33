@@ -15,5 +15,9 @@ return [
             'port' => 6379,
             'database' => 0,
         ],
+//        'controllerMap' => [
+//            'backup-mongo' => \gepard\mongodb\console\BackupController::class,
+//        ],
+
     ],
 ];
