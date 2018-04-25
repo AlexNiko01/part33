@@ -1,0 +1,14 @@
+1.a:
+db.products.find({$and:[{"categoryId" : NumberInt(151)}, {"categoryName.name" : "notebooks"}]})
+
+1.b:
+db.products.find({ean:{ $exists: true, $not: {$size: 0}}})
+
+1.c:
+db.products.find({"categoryName.name":{ $ne: "notebooks"}})
+
+1.d:
+db.products.find({ean:{$in : ["0882780045675", "0882780045132","0882780260214"]}})
+
+1.e:
+db.products.find({releaseDate : { $gt: "2018-01-01" }})

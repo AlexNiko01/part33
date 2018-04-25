@@ -43,6 +43,8 @@ services:
     extends:
       file: ${COMPOSE_CONVERT_WINDOWS_PATHS}
       service: mongodb36
+    volumes:
+          - ../db:/data/db
 
   redis:
     extends:
