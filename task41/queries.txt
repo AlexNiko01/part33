@@ -74,3 +74,45 @@ db.products.aggregate(
 
 
 3.c:
+    var options = {
+        allowDiskUse: false
+    };
+
+    var pipeline = [
+        {
+            "$project": {
+                "features.defaultValue": 1.0,
+                "features.categoryFeatureId": 1.0
+            }
+        },
+        {
+            "$unwind": {
+                "path": "$features",
+                "preserveNullAndEmptyArrays": false
+            }
+        },
+        {
+            "$match": {
+                "features.categoryFeatureId": 11561.0
+            }
+        },
+        {
+            "$group": {
+                "_id": null,
+                "arr": {
+                    "$push": "$features.defaultValue"
+                }
+            }
+        }
+    ];
+
+    var cursor = collection.aggregate(pipeline, options);
+
+    cursor.forEach(
+        function(doc) {
+            console.log(doc);
+        },
+        function(err) {
+            client.close();
+        }
+    );
