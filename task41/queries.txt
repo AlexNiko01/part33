@@ -74,45 +74,60 @@ db.products.aggregate(
 
 
 3.c:
-    var options = {
-        allowDiskUse: false
-    };
+   db.products.aggregate(
 
-    var pipeline = [
-        {
-            "$project": {
-                "features.defaultValue": 1.0,
-                "features.categoryFeatureId": 1.0
-            }
-        },
-        {
-            "$unwind": {
-                "path": "$features",
-                "preserveNullAndEmptyArrays": false
-            }
-        },
-        {
-            "$match": {
-                "features.categoryFeatureId": 11561.0
-            }
-        },
-        {
-            "$group": {
-                "_id": null,
-                "arr": {
-                    "$push": "$features.defaultValue"
-                }
-            }
-        }
-    ];
+   	// Pipeline
+   	[
+   		// Stage 1
+   		{
+   			$project: {
+   			    "features.defaultValue": 1,
+   			    "features.categoryFeatureId": 1
+   			}
+   		},
 
-    var cursor = collection.aggregate(pipeline, options);
+   		// Stage 2
+   		{
+   			$unwind: {
+   			     "path": "$features",
+   			     "preserveNullAndEmptyArrays": false
+   			}
+   		},
 
-    cursor.forEach(
-        function(doc) {
-            console.log(doc);
-        },
-        function(err) {
-            client.close();
-        }
-    );
+   		// Stage 3
+   		{
+   			$match: {
+   				"features.categoryFeatureId": 11561
+   			}
+   		},
+
+   		// Stage 4
+   		{
+   			$limit: 50000
+   		},
+
+   		// Stage 5
+   		{
+   			$group: {
+   			   "_id": null,
+   			    "arr": {
+   			            "$addToSet": "$features.defaultValue"
+   			                }
+   			}
+   		},
+
+   	]
+
+
+   );
+
+
+
+4.a:
+db.products.find({}, {"mainPicture" : 0, "gallery" : 0})
+
+4.b:
+db.products.find({}, {"brandId" : 1, "brandName" : 1, "categoryId" : 1, "categoryName" : 1, "description" : 1, "_id" : 0})
+
+4.c:
+db.products.find({ releaseDate: { $ne: null } }).sort( { releaseDate: -1 } )
