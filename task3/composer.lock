@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "content-hash": "f23be33dce39121ad96b719cda44558f",
+    "content-hash": "83323fa99f869c1fcb0648208184cea8",
     "packages": [
         {
             "name": "bower-asset/bootstrap",
@@ -426,12 +426,71 @@
             "time": "2018-03-22T17:33:51+00:00"
         },
         {
+            "name": "gepard2-extension/core-nosql",
+            "version": "1.0.2",
+            "source": {
+                "type": "git",
+                "url": "git@gitlab.bintime.com:gepard2-extension/core-nosql.git",
+                "reference": "2b6f776f2a8f015087ba0926df8f4e506051e090"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "http://satis.testing7.bintime.com/dist/gepard2-extension/core-nosql/gepard2-extension-core-nosql-1.0.2-5cea37.zip",
+                "reference": "2b6f776f2a8f015087ba0926df8f4e506051e090",
+                "shasum": "37438211cd3b991c9fdc6faa5157fe155c2ddc46"
+            },
+            "require": {
+                "gepard2-extension/core": "*",
+                "php": ">=7.1.0",
+                "yiisoft/yii2": ">=2.0.13"
+            },
+            "require-dev": {
+                "gepard2-extension/core": "dev-develop",
+                "phpunit/phpunit": "^7"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "gepard\\nosql\\": "src/"
+                }
+            },
+            "autoload-dev": {
+                "psr-4": {
+                    "gepard\\nosql\\tests\\": "tests/"
+                }
+            },
+            "license": [
+                "proprietary"
+            ],
+            "authors": [
+                {
+                    "name": "Vadym Stepanov",
+                    "email": "vadym.stepanov@bintime.com"
+                },
+                {
+                    "name": "Rusavskiy Vitaliy",
+                    "email": "rusavskiy.v@bintime.com"
+                }
+            ],
+            "description": "Gepard platform core classes for NoSQL databases",
+            "homepage": "https://www.bintime.com",
+            "keywords": [
+                "gepard",
+                "nosql",
+                "yii2"
+            ],
+            "support": {
+                "source": "https://gitlab.bintime.com/gepard2/core-nosql"
+            },
+            "time": "2018-03-23T12:23:49+00:00"
+        },
+        {
             "name": "gepard2-extension/core-repository",
             "version": "dev-develop-2",
             "source": {
                 "type": "git",
                 "url": "git@gitlab.bintime.com:gepard2-extension/core-repository.git",
-                "reference": "537bd209b5cac18da2c811c3ffc9ba77072a3ef2"
+                "reference": "ff87d1923c7f48978359d02061d4587eb1cbb090"
             },
             "require": {
                 "ext-curl": "*",
@@ -487,7 +546,7 @@
             "support": {
                 "source": "https://gitlab.bintime.com/gepard2-extension/core-repository"
             },
-            "time": "2018-04-10T11:07:24+00:00"
+            "time": "2018-04-19T15:20:12+00:00"
         },
         {
             "name": "gepard2-extension/hydrator",
@@ -495,13 +554,13 @@
             "source": {
                 "type": "git",
                 "url": "git@gitlab.bintime.com:gepard2-extension/hydrator.git",
-                "reference": "f98d5e4c4c91ea3ff28a6376d5cb8f810a8a4427"
+                "reference": "a0eb144847c7a16e0878ea5251c74cea63570f0f"
             },
             "require": {
                 "gepard2-extension/core": "*",
                 "php": ">=7.2.0",
                 "phpdocumentor/reflection-docblock": "3.*",
-                "yiisoft/yii2": ">=2.0.13"
+                "yiisoft/yii2": "^2.0.15"
             },
             "require-dev": {
                 "gepard2-extension/core": "dev-develop",
@@ -543,7 +602,74 @@
             "support": {
                 "source": "https://gitlab.bintime.com/gepard2-extension/hydrator"
             },
-            "time": "2018-04-18T13:24:38+00:00"
+            "time": "2018-04-20T10:15:51+00:00"
+        },
+        {
+            "name": "gepard2-extension/mongodb",
+            "version": "dev-develop",
+            "source": {
+                "type": "git",
+                "url": "git@gitlab.bintime.com:gepard2-extension/mongodb.git",
+                "reference": "8ee3c5b5714f97384ff9b9f498420f4d3221f597"
+            },
+            "require": {
+                "gepard2-extension/core": "*",
+                "gepard2-extension/core-nosql": "*",
+                "php": ">=7.1.0",
+                "yiisoft/yii2": ">=2.0.13",
+                "yiisoft/yii2-mongodb": "~2.1.0"
+            },
+            "require-dev": {
+                "phpunit/phpunit": "^7.0"
+            },
+            "type": "gepard-extension",
+            "extra": {
+                "gepard-config": {
+                    "applications": [
+                        "console"
+                    ]
+                },
+                "branch-alias": {
+                    "dev-develop": "1.1.x-dev"
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "gepard\\mongodb\\": "src/"
+                }
+            },
+            "autoload-dev": {
+                "psr-4": {
+                    "gepard\\mongodb\\tests\\": "tests/"
+                }
+            },
+            "license": [
+                "proprietary"
+            ],
+            "authors": [
+                {
+                    "name": "Vadym Stepanov",
+                    "email": "vadym.stepanov@bintime.com"
+                },
+                {
+                    "name": "Rusavskiy Vitaliy",
+                    "email": "rusavskiy.v@bintime.com"
+                }
+            ],
+            "description": "MongoDB integration and ActiveRecord for the Gepard platform",
+            "homepage": "https://www.bintime.com",
+            "keywords": [
+                "active-record",
+                "database",
+                "documents",
+                "mongodb",
+                "no-sql",
+                "yii2"
+            ],
+            "support": {
+                "source": "https://gitlab.bintime.com/gepard2-extension/mongodb"
+            },
+            "time": "2018-04-23T12:33:25+00:00"
         },
         {
             "name": "lcobucci/jwt",
@@ -1197,6 +1323,55 @@
             "time": "2018-03-21T16:15:55+00:00"
         },
         {
+            "name": "yiisoft/yii2-mongodb",
+            "version": "2.1.7",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/yiisoft/yii2-mongodb.git",
+                "reference": "68fc79f36487da5b386afd16ad7576394d7dd714"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/yiisoft/yii2-mongodb/zipball/68fc79f36487da5b386afd16ad7576394d7dd714",
+                "reference": "68fc79f36487da5b386afd16ad7576394d7dd714",
+                "shasum": ""
+            },
+            "require": {
+                "ext-mongodb": ">=1.0.0",
+                "yiisoft/yii2": "~2.0.14"
+            },
+            "type": "yii2-extension",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "2.1.x-dev"
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "yii\\mongodb\\": "src"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "BSD-3-Clause"
+            ],
+            "authors": [
+                {
+                    "name": "Paul Klimov",
+                    "email": "klimov.paul@gmail.com"
+                }
+            ],
+            "description": "MongoDB extension for the Yii framework",
+            "keywords": [
+                "GridFS",
+                "active-record",
+                "mongo",
+                "mongodb",
+                "yii2"
+            ],
+            "time": "2018-03-30T15:05:41+00:00"
+        },
+        {
             "name": "yiisoft/yii2-redis",
             "version": "2.0.8",
             "source": {
@@ -1249,16 +1424,16 @@
         },
         {
             "name": "yiisoft/yii2-swiftmailer",
-            "version": "2.1.0",
+            "version": "2.1.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/yiisoft/yii2-swiftmailer.git",
-                "reference": "563570c9aa19ca47c1b22e3032983229378e9274"
+                "reference": "fd917fbe63b7ea796c52902143b83b98e65bfb73"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/yiisoft/yii2-swiftmailer/zipball/563570c9aa19ca47c1b22e3032983229378e9274",
-                "reference": "563570c9aa19ca47c1b22e3032983229378e9274",
+                "url": "https://api.github.com/repos/yiisoft/yii2-swiftmailer/zipball/fd917fbe63b7ea796c52902143b83b98e65bfb73",
+                "reference": "fd917fbe63b7ea796c52902143b83b98e65bfb73",
                 "shasum": ""
             },
             "require": {
@@ -1268,12 +1443,12 @@
             "type": "yii2-extension",
             "extra": {
                 "branch-alias": {
-                    "dev-master": "2.0.x-dev"
+                    "dev-master": "2.1.x-dev"
                 }
             },
             "autoload": {
                 "psr-4": {
-                    "yii\\swiftmailer\\": ""
+                    "yii\\swiftmailer\\": "src"
                 }
             },
             "notification-url": "https://packagist.org/downloads/",
@@ -1295,7 +1470,7 @@
                 "swiftmailer",
                 "yii2"
             ],
-            "time": "2017-08-04T10:48:17+00:00"
+            "time": "2018-04-24T23:17:42+00:00"
         }
     ],
     "packages-dev": [
@@ -1468,16 +1643,16 @@
         },
         {
             "name": "codeception/phpunit-wrapper",
-            "version": "7.1.0",
+            "version": "7.1.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/Codeception/phpunit-wrapper.git",
-                "reference": "cde840638d021804ce93e8f98bcb7edbf6935423"
+                "reference": "33e8ccf2f7abf5c031eeae9802b821d30ec0f7fc"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/Codeception/phpunit-wrapper/zipball/cde840638d021804ce93e8f98bcb7edbf6935423",
-                "reference": "cde840638d021804ce93e8f98bcb7edbf6935423",
+                "url": "https://api.github.com/repos/Codeception/phpunit-wrapper/zipball/33e8ccf2f7abf5c031eeae9802b821d30ec0f7fc",
+                "reference": "33e8ccf2f7abf5c031eeae9802b821d30ec0f7fc",
                 "shasum": ""
             },
             "require": {
@@ -1507,7 +1682,7 @@
                 }
             ],
             "description": "PHPUnit classes used by Codeception",
-            "time": "2018-04-10T09:05:14+00:00"
+            "time": "2018-04-20T10:17:13+00:00"
         },
         {
             "name": "codeception/stub",
@@ -3648,7 +3823,8 @@
     "minimum-stability": "stable",
     "stability-flags": {
         "gepard2-extension/core-repository": 20,
-        "gepard2-extension/hydrator": 20
+        "gepard2-extension/hydrator": 20,
+        "gepard2-extension/mongodb": 20
     },
     "prefer-stable": false,
     "prefer-lowest": false,

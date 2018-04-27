@@ -25,9 +25,9 @@ services:
       service: php72
     volumes:
           - ../task3:/var/www/data
-          - ~/.ssh/id_rsa.pub:/home/dev/.ssh/authorized_keys
-          - ~/.ssh/id_rsa.pub:/home/dev/.ssh/id_rsa.pub
-          - ~/.ssh/id_rsa:/home/dev/.ssh/id_rsa
+          - ~/.ssh/id_rsa.pub:/docker/ssh/authorized_keys
+          - ~/.ssh/id_rsa.pub:/docker/ssh/id_rsa.pub
+          - ~/.ssh/id_rsa:/docker/ssh/id_rsa
 
     dns: 8.8.8.8
     environment:

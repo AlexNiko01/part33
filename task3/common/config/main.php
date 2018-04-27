@@ -2,7 +2,7 @@
 return [
     'aliases' => [
         '@bower' => '@vendor/bower-asset',
-        '@npm'   => '@vendor/npm-asset',
+        '@npm' => '@vendor/npm-asset',
     ],
     'vendorPath' => dirname(dirname(__DIR__)) . '/vendor',
     'components' => [
@@ -15,9 +15,12 @@ return [
             'port' => 6379,
             'database' => 0,
         ],
-//        'controllerMap' => [
-//            'backup-mongo' => \gepard\mongodb\console\BackupController::class,
-//        ],
-
+        'mongodb' => [
+            'class' => '\yii\mongodb\Connection',
+            'dsn' => 'mongodb://mongodb:27017/test',
+        ],
+    ],
+    'controllerMap' => [
+        'mongo' => \frontend\controllers\MongoController::class,
     ],
 ];
