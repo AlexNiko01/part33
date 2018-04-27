@@ -16,7 +16,7 @@ return [
             'database' => 0,
         ],
         'mongodb' => [
-            'class' => '\yii\mongodb\Connection',
+            'class' => 'gepard\mongodb\Connection',
             'dsn' => 'mongodb://mongodb:27017/test',
         ],
     ],

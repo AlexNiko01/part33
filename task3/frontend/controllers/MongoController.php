@@ -21,11 +21,10 @@ class MongoController extends Controller
 
         /** @var Connection $connection */
         $connection = $result = \Yii::$app->mongodb;
-
+        \var_dump($connection);
         /** @var Cursor $result */
-        $result = $connection
-            ->createCommand(['categoryId' => 151])
-            ->count('products');
+//        $result = $connection->
+//            ->count('products');
             //->query('products');
 
         \var_dump($result);
