@@ -17,7 +17,8 @@ return [
         ],
         'mongodb' => [
             'class' => 'gepard\mongodb\Connection',
-            'dsn' => 'mongodb://mongodb:27017/test',
+            'dsn' => 'mongodb://mongodb:27017',
+            'defaultDatabaseName' => 'test'
         ],
     ],
     'controllerMap' => [

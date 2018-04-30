@@ -11,10 +11,10 @@ db.products.find({"categoryName.name":{ $ne: "notebooks"}})
 db.products.find({ean:{$in : ["0882780045675", "0882780045132","0882780260214"] }})
 
 1.e:
-db.products.find({releaseDate : { $gt: "2018-01-01" }})
+db.products.find({releaseDate : { $gt: "2018-01-01" }}) --------
 
 1.f:
-db.products.find( {$and: [{updated :{ $gt: "20180201000000" }}, {updated :{$lte: "20180401000000"}}] })
+db.products.find( {$and: [{updated :{ $gt: "20180201000000" }}, {updated :{$lte: "20180401000000"}}] }) --------
 
 1.g:
 db.products.find({$and: [{"categoryId" : NumberInt(153)}, {"categoryName.name" : "PCs/workstations"}, {releaseDate : { $gt: "2017-01-01" }}, {ean:{ $exists: true, $not: {$size: 0}}}] })

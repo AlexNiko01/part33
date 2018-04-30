@@ -27,7 +27,8 @@
     "gepard2-extension/core-repository": "dev-develop-2",
     "gepard2-extension/hydrator": "dev-develop",
     "ramsey/uuid": "^3.7",
-    "gepard2-extension/mongodb": "dev-develop"
+    "gepard2-extension/mongodb": "dev-develop",
+    "mp091689/dump-die": "^1.0"
   },
   "require-dev": {
     "yiisoft/yii2-debug": "~2.0.0",
